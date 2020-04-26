@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="login-form">
+    <form th:action="@{/loginAction}" method="POST" class="form-signin" id="formSignup">
+        <h2 class="text-center">Login</h2>
+        <!--<div align="center" th:if="${param.error}">-->
+        <!--<p style="font-size: 20; color: #FF1C19;">-->
+        <!--Username or password is incorrect</p>-->
+        <!--</div>-->
+        <h5><p style="color: red;" th:text="${message}"></p></h5>
+        <div align="center" th:if="${param.resetSuccess}">
+            <p style="font-size: 20; color: #34ce57;">Change password success</p>
+        </div>
+        <p class="text-success" th:utext="${successMessage}"/>
+
+        <div class="form-group has-error">
+            <input autocomplete="off" type="text" id="username" name="username" property="username"
+                   th:placeholder="Username" class="form-control" required="required" pattern="^[a-zA-Z0-9]{8,32}"
+                   title="Character a-z, A-Z, 0-9 and length 8 - 32 char .Examble:user1234"/>
+            <p class="text-danger form-control-fix" id="info-username"></p>
+        </div>
+        <div class="form-group">
+            <input type="password" id="Password" name="encrytedPassword"
+                   th:placeholder="Password" class="form-control" required="required"/>
+            <p class="text-danger form-control-fix" id="info-password"></p>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
+                    th:text="Login"></button>
+        </div>
+        <p><a th:href="@{/forgot-password}">Forget Password?</a></p>
+    </form>
+    <p class="text-center small" style="color: white;">Don't have an account? <a th:href="@{/registration}">Sign up
+        here!</a></p>
+</div>
+</body>
+</html>
